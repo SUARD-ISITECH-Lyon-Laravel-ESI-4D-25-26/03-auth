@@ -1,0 +1,84 @@
+{
+  "tests": [
+    {
+      "name": "Run PHPUnit tests",
+      "setup": "",
+      "run": "vendor/bin/phpunit --testdox --filter=test_profile_routes_are_protected_from_public",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Run PHPUnit tests",
+      "setup": "",
+      "run": "vendor/bin/phpunit --testdox --filter=test_profile_link_is_invisible_in_public",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Run PHPUnit tests",
+      "setup": "",
+      "run": "vendor/bin/phpunit --testdox --filter=test_profile_fields_are_visible",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Run PHPUnit tests",
+      "setup": "",
+      "run": "vendor/bin/phpunit --testdox --filter=test_profile_name_email_update_successful",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Run PHPUnit tests",
+      "setup": "",
+      "run": "vendor/bin/phpunit --testdox --filter=test_profile_password_update_successful",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Run PHPUnit tests",
+      "setup": "",
+      "run": "vendor/bin/phpunit --testdox --filter=test_email_can_be_verified",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Run PHPUnit tests",
+      "setup": "",
+      "run": "vendor/bin/phpunit --testdox --filter=test_password_confirmation_page",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "Run PHPUnit tests",
+      "setup": "",
+      "run": "vendor/bin/phpunit --testdox --filter=test_password_at_least_one_uppercase_lowercase_letter",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    }
+  ]
+}
