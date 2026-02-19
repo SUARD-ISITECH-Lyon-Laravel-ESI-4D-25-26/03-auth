@@ -1,93 +1,113 @@
-## Test Your Laravel Auth Skills
+## Testez vos compétences Laravel — Authentification
 
-This repository is a test for you: perform a set of tasks listed below, and fix the PHPUnit tests, which are currently intentionally failing.
+Ce dépôt est un exercice pratique : réalisez les tâches listées ci-dessous
+et faites passer les tests PHPUnit, qui échouent volontairement pour le moment.
 
-To test if all the functions work correctly, there are PHPUnit tests in `tests/Feature/AuthenticationTest.php` file.
+Pour vérifier votre progression, les tests se trouvent dans `tests/Feature/AuthenticationTest.php`.
 
-In the very beginning, if you run `php artisan test`, or `vendor/bin/phpunit`, all tests fail.
-Your task is to make those tests pass.
+Au départ, si vous exécutez `php artisan test`, tous les tests échouent.
+Votre objectif est de les faire passer un par un.
 
-
-## How to Submit Your Solution
-
-If you want to submit your solution, you should make a Pull Request to the `main` branch.
-It will automatically run the tests via Github Actions and will show you/me if the test pass.
-
-If you don't know how to make a Pull Request, [here's my video with instructions](https://www.youtube.com/watch?v=vEcT6JIFji0).
-
-This task is mostly self-served, so I'm not planning review or merge the Pull Requests. This test is for yourselves to assess your skills, the automated tests will be your answer if you passed the test :)
+> ⚠️ **Vous n'avez pas le droit de modifier les fichiers de tests.**
 
 
-## Questions / Problems?
+## Installation du projet
 
-If you're struggling with some of the tasks, or you have suggestions how to improve the task, create a Github Issue.
+```sh
+git clone <url-du-depot> projet
+cd projet
+cp .env.example .env  # Éditez vos variables d'environnement
+composer install
+php artisan key:generate
+```
 
-Good luck!
+Puis lancez `php artisan test` pour voir les erreurs à corriger.
 
----
 
-## Task 1. Routes Protected by Auth.
+## Soumettre votre solution
 
-File `routes/web.php`: profile functionality URLs should be available only for logged-in users.
-
-Test method `test_profile_routes_are_protected_from_public()`.
+Créez une Pull Request (ou Merge Request) vers la branche `main`.
 
 ---
 
-## Task 2. Link Visible to Logged-in Users.
+## Tâche 1. Routes protégées par l'authentification (middleware auth)
 
-File `resources/views/layouts/navigation.blade.php`: the "Profile" link should be visible only to logged-in users.
+Dans le fichier `routes/web.php`, les routes du profil (`/profile`) doivent être
+accessibles uniquement aux utilisateurs connectés.
+Ajoutez le middleware `"auth"` pour protéger ces routes.
 
-Test method `test_profile_link_is_invisible_in_public()`.
-
----
-
-## Task 3. Profile Fields.
-
-File `resources/views/auth/profile.blade.php`: replace "???" values for name/email with logged-in user's name/email.
-
-Test method `test_profile_fields_are_visible()`.
+Méthode de test : `test_profile_routes_are_protected_from_public()`.
 
 ---
 
-## Task 4. Profile Update.
+## Tâche 2. Lien de navigation visible uniquement pour les utilisateurs connectés
 
-File `app/Http/Controllers/ProfileController.php`: fill in the method `update()` with the code to update the user's name and email.
-If the password is filled in, also update that.
+Dans le fichier `resources/views/layouts/navigation.blade.php`, le lien "Profile"
+doit être affiché uniquement aux utilisateurs connectés.
+Les utilisateurs non connectés ne doivent pas voir ce lien.
 
-Test methods: `test_profile_name_email_update_successful()` and `test_profile_password_update_successful()`.
-
----
-
-## Task 5. Email Verification.
-
-Make the URL `/secretpage` available only to those who verified their email.
-You need to make changes to two files.
-
-In file `routes/web.php` add a Middleware to `/secretpage` URL.
-And enable email verification in the `app/Models/User.php` file.
-
-Test method: `test_email_can_be_verified()`.
+Méthode de test : `test_profile_link_is_invisible_in_public()`.
 
 ---
 
-## Task 6. Password Confirmation.
+## Tâche 3. Champs du profil pré-remplis
 
-Make the URL `/verysecretpage` redirect to a page to re-enter their password once again.
-In file `routes/web.php` add a Middleware to that URL.
+Dans le fichier `resources/views/auth/profile.blade.php`, remplacez les valeurs `"???"`
+des champs `name` et `email` par les données de l'utilisateur actuellement connecté.
 
-Test method: `test_password_confirmation_page()`.
+Méthode de test : `test_profile_fields_are_visible()`.
 
 ---
 
-## Task 7. Password with Letters.
+## Tâche 4. Mise à jour du profil
 
-By default, registration form requires password with at least 8 characters.
-Add a validation rule so that password must have at least one letter, no matter uppercase or lowercase.
+Dans le fichier `app/Http/Controllers/ProfileController.php`, complétez la méthode `update()`
+avec le code permettant de mettre à jour le nom (name) et l'email de l'utilisateur.
+Si le mot de passe est renseigné dans le formulaire, mettez-le également à jour.
 
-So password `12345678` is invalid, but password `a12345678` is valid.
+Méthodes de test : `test_profile_name_email_update_successful()` et `test_profile_password_update_successful()`.
 
-Hint: you need to modify file `app/Http/Controllers/Auth/RegisteredUserController.php`, which is almost default from Laravel Breeze.
+---
 
-Test method: `test_password_at_least_one_uppercase_lowercase_letter()`.
+## Tâche 5. Vérification de l'adresse email (email verification)
+
+Rendez l'URL `/secretpage` accessible uniquement aux utilisateurs ayant vérifié leur adresse email.
+Vous devez modifier deux fichiers :
+
+- Dans `routes/web.php` : ajoutez le middleware `"verified"` à la route `/secretpage`.
+- Dans `app/Models/User.php` : activez la vérification d'email en implémentant l'interface appropriée.
+
+Méthode de test : `test_email_can_be_verified()`.
+
+---
+
+## Tâche 6. Confirmation du mot de passe (password confirmation)
+
+Faites en sorte que l'URL `/verysecretpage` redirige l'utilisateur vers une page
+lui demandant de ressaisir son mot de passe.
+Dans le fichier `routes/web.php`, ajoutez le middleware `"password.confirm"` à cette route.
+
+Méthode de test : `test_password_confirmation_page()`.
+
+---
+
+## Tâche 7. Règle de validation du mot de passe (lettre obligatoire)
+
+Par défaut, le formulaire d'inscription exige un mot de passe d'au moins 8 caractères.
+Ajoutez une règle de validation pour que le mot de passe contienne au moins une lettre
+(minuscule ou majuscule).
+
+Ainsi, le mot de passe `12345678` est invalide, mais `a12345678` est valide.
+
+Modifiez le fichier `app/Http/Controllers/Auth/RegisteredUserController.php`.
+
+Méthode de test : `test_password_at_least_one_uppercase_lowercase_letter()`.
+
+---
+
+## Questions / Problèmes ?
+
+Si vous rencontrez des difficultés ou avez des suggestions, créez une Issue.
+
+Bon courage !
 

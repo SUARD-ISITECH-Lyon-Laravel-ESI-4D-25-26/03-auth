@@ -5,12 +5,12 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| Routes API
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| Ce fichier contient les routes API de votre application.
+| Ces routes sont chargées par le RouteServiceProvider dans un groupe
+| qui utilise le middleware "api".
 |
 */
 

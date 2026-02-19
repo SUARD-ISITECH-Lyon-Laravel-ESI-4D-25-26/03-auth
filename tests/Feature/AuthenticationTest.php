@@ -59,7 +59,7 @@ class AuthenticationTest extends TestCase
         $this->actingAs($user)->put('/profile', $newData);
         $this->assertDatabaseHas('users', $newData);
 
-        // Check if the user is still able to log in - password unchanged
+        // Vérifiez que l'utilisateur peut toujours se connecter — le mot de passe n'a pas changé
         $this->assertTrue(Auth::attempt([
             'email' => $user->email,
             'password' => 'password'
@@ -77,7 +77,7 @@ class AuthenticationTest extends TestCase
         ];
         $this->actingAs($user)->put('/profile', $newData);
 
-        // Check if the user is able to log in with the new password
+        // Vérifiez que l'utilisateur peut se connecter avec le nouveau mot de passe
         $this->assertTrue(Auth::attempt([
             'email' => $user->email,
             'password' => 'newpassword'

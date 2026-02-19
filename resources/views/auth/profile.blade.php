@@ -19,12 +19,12 @@
                         @method('PUT')
 
                         <div>
-                            <em><b>Task:</b> replace ??? for name/email with logged in user's name/email</em>
+                            <em><b>Tâche :</b> remplacez les "???" pour le nom et l'email par les valeurs de l'utilisateur connecté</em>
                             <br /><br />
 
                             <x-label for="name" :value="__('Name')"/>
 
-                            {{-- Task: replace ??? for name/email with logged in user's name/email --}}
+                            {{-- TÂCHE : remplacez les "???" pour le nom et l'email par les valeurs de l'utilisateur connecté --}}
                             <x-input id="name"
                                      class="block mt-1 w-full"
                                      type="text"

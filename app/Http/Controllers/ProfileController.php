@@ -13,8 +13,10 @@ class ProfileController extends Controller
 
     public function update(ProfileUpdateRequest $request)
     {
-        // Task: fill in the code here to update name and email
-        // Also, update the password if it is set
+        // TÂCHE : complétez cette méthode pour mettre à jour le nom (name) et l'email de l'utilisateur
+        // Si le mot de passe est renseigné, mettez-le également à jour
+        // Indice : utilisez $request->user() pour accéder à l'utilisateur connecté (voir https://laravel.com/docs/authentication#retrieving-the-authenticated-user)
+        // Votre code ici
 
         return redirect()->route('profile.show')->with('success', 'Profile updated.');
     }
